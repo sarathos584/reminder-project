@@ -1,0 +1,11 @@
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+// Importing normalize style file
+@import "./custom-styles/normalize";
+
+@import "./custom-styles/variables";
+body {
+  background: $main-bg-color;
+  width: 100vw;
+}

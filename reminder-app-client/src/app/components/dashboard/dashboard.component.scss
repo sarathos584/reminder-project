@@ -1,0 +1,45 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap");
+@import "../../../custom-styles/mixins.scss";
+@import "../../../custom-styles/variables";
+@include dividerStyle;
+.form-section {
+  border-radius: 1rem;
+  padding: 2rem;
+  height: 84vh;
+}
+
+textarea {
+  width: 100%;
+  height: 30vh;
+  padding: 1rem;
+  resize: none;
+  border-radius: 0.5rem;
+  @include inputField;
+}
+input[type="date"],
+input[type="time"] {
+  @include dateAndTimeInput;
+}
+button {
+  background: $main-bg-color;
+  outline: none;
+  border: none;
+  &:hover,
+  &:active,
+  &::after {
+    @include btnHoverOne;
+  }
+}
+a {
+  text-decoration: none;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 1rem;
+  padding: 0.4rem;
+  font-size: 0.7rem;
+  &:hover,
+  &:active,
+  &::after {
+    @include btnHoverOne;
+  }
+}

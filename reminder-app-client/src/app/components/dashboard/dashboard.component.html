@@ -1,0 +1,44 @@
+<section>
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img
+          src="../../../assets/remind.svg"
+          class="img-fluid"
+          alt="Sample image"
+        />
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 p-3">
+        <div class="divider d-flex align-items-center my-4">
+          <p class="text-center fw-bold mx-3 mb-0">Write down your remiders</p>
+        </div>
+        <div class="form-section bg-light">
+          <form [formGroup]="reminderForm" (ngSubmit)="btnClick()">
+            <!-- reminder note input -->
+            <div class="form-outline mb-4 mx-2">
+              <textarea name="reminder-note" id="reminder-note" placeholder="Type your remider note here!" formControlName="reminder"></textarea>
+            </div>
+
+            <!-- remider note date input -->
+            <div class="form-outline text-center mb-3 mx-2">
+              <input type="date" name="reminder-date" id="reminder-date" formControlName="date" />
+            </div>
+            <!-- remider note time input -->
+            <div class="form-outline text-center mb-2 mx-2">
+              <input type="time" name="reminder-time" id="reminder-time" formControlName="time" />
+            </div>
+
+            <div class="text-center mt-1 pt-2">
+              <button type="submit" class="btn btn-md">
+                Remind Me
+              </button>
+            </div>
+          </form>
+          <div class="text-center viewBtn mt-3">
+            <a routerLink="/reminder-list">View all</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

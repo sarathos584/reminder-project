@@ -1,0 +1,46 @@
+@import "../../../custom-styles/variables";
+.container {
+  padding: 5rem 2rem;
+
+  color: white;
+}
+.welcome {
+  img {
+    width: 50%;
+    margin-bottom: 4rem;
+  }
+}
+.head {
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.paragraph {
+  line-height: 2rem;
+}
+.btn-section {
+  gap: 1rem;
+}
+button {
+  border: none;
+  outline: none;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.404);
+  box-shadow: inset 0px 10px 14px black, 0px -1px 1px whitesmoke;
+ 
+  padding: 0.3rem 0.5rem;
+  a{
+    text-decoration: none;
+    color: $white;
+    font-size: 0.9rem;
+}
+  &:hover {
+    background-color: rgba(228, 110, 218, 0.774);
+    box-shadow: inset 0px 10px 14px rgb(188, 92, 207), 0px -1px 1px whitesmoke;
+        
+  }
+}
+@media (max-width: 768px) {
+  .welcome {
+    order: -1;
+  }
+}

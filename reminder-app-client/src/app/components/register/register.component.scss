@@ -1,0 +1,6 @@
+@import "../../../custom-styles/mixins.scss";
+@include dividerStyle;
+@include buttonStyle;
+form{
+    @include flexCentered(column);
+}
