@@ -1,0 +1,31 @@
+@import '../../../custom-styles/variables';
+table {
+  th,
+  td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+.mask-custom {
+  background: rgba(24, 24, 16, 0.2);
+  border-radius: 2em;
+  backdrop-filter: blur(25px);
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  background-clip: padding-box;
+  box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+}
+a{
+  text-decoration: none;
+  color: white;
+  border: 1px solid $white;
+  position: relative;
+  top: 1.5rem;
+  border-radius: 1rem;
+  padding: .4rem;
+  outline: none;
+    &:hover{
+      background: #00000073;
+    }
+}
