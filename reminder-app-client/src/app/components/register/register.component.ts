@@ -1,33 +1,35 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent {
-  constructor(private fb: FormBuilder,private r:Router ) {}
+  constructor(
+    private fb: FormBuilder,
+    private r: Router,
+    private ds: DataService
+  ) {}
 
   registerForm = this.fb.group({
     fullname: [
       '',
       [
-        Validators.required,
-        Validators.pattern(`^([a-zA-Z]+[,.]?[ ]?|[a-zA-Z]+['-]?)+$`),
+        Validators.required
       ],
     ],
     username: [
       '',
       [
-        Validators.required,
-        Validators.pattern(`^[a-zA-Z0-9_-]{3,16}$
-  `),
+        Validators.required
       ],
     ],
     password: [
       '',
-      [Validators.required, Validators.pattern('[0-9a-zA-Z*&$@!]{4,}')],
+      [Validators.required],
     ],
   });
 
@@ -36,6 +38,21 @@ export class RegisterComponent {
     let username = this.registerForm.value.username;
     let password = this.registerForm.value.password;
     console.log(fullname, username, password);
-    this.r.navigateByUrl('/dashboard')
+    if (this.registerForm.valid) {
+      let result = this.ds.register(fullname, username, password);
+      result.subscribe(
+        (response: any) => {
+          if (response) {
+            alert(response.message);
+            this.r.navigateByUrl('');
+          }
+        },
+        (err: any) => {
+          alert(err.error.message);
+        }
+      );
+    } else {
+      alert('Invalid data!');
+    }
   }
 }

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./reminder-list.component.scss']
 })
 export class ReminderListComponent {
-
+reminders:any;
 }

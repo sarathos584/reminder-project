@@ -16,10 +16,10 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
-                          <td>61</td>
-                          <td>Edinburgh</td>
-                          <td>$320,800</td>
+                        <tr *ngFor="let i of reminders">
+                          <td>{{i.reminder}}</td>
+                          <td>{{i.date}}</td>
+                          <td>{{i.time}}</td>
                         </tr>
                         
                       </tbody>
