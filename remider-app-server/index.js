@@ -14,9 +14,11 @@ app.use(
 const appMiddleware = (req, res, next) => {
   try {
     token = req.headers["x-access-token"];
+    console.log(token)
     res = jwt.verify(token, "jwtauthkey123");
-    req.username = res.username;
-    console.log(res);
+    req.username = res.currentUserName;
+    console.log(res +"from middleware");
+    console.log(res.currentUserName +"  username from middleware");
     next();
   } catch {
     res.status(400).json({
@@ -49,17 +51,27 @@ app.post("/login", (req, res) => {
 
 // API for ADDING REMINDERS
 
-app.post("/reminder", (req, res) => {
+app.post('/reminder',appMiddleware,(req,res)=>{
   const result = dataservice.addReminder(
     req.body.reminder,
     req.body.date,
     req.body.time,
     req
-  );
-  result.then((resultObject) => {
-    res.status(resultObject.statusCode).send(resultObject);
-  });
-});
+  )
+  result.then((resultObject)=>{
+    res.status(resultObject.statusCode).send(resultObject)
+  })
+})
+
+// API for REMINDER LIST
+
+app.post('/reminders',appMiddleware,(req,res)=>{
+  const result = dataservice.getReminders(req.body.username)
+  result.then((resultObject=>{
+    res.status(resultObject.statusCode).send(resultObject)
+  }))
+})
+
 
 app.listen(port, () => {
   console.log(`Reminder app listening on port ${port}`);

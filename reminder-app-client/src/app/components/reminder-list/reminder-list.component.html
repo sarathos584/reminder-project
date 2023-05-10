@@ -16,10 +16,21 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let i of reminders">
+                        <!-- <tr class="reminder-data">
+                          <td>this is a reminder</td>
+                          <td>12-12-1111</td>
+                          <td>09:25</td>
+                          <td><button>remove</button></td>
+                        </tr> -->
+                        <tr *ngFor="let i of reminders" class="reminder-data">
                           <td>{{i.reminder}}</td>
                           <td>{{i.date}}</td>
                           <td>{{i.time}}</td>
+                          <td>
+                            <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
+                            <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
+                          </td>
+                          
                         </tr>
                         
                       </tbody>

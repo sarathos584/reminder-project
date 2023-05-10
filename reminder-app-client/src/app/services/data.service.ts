@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-const options = {headers:new HttpHeaders}
+const options = {headers:new HttpHeaders()}
 @Injectable({
   providedIn: 'root',
 })
 export class DataService {
   constructor(private http: HttpClient) {}
   getToken(){
-    
     const token = localStorage.getItem('token')
-    let headers = new HttpHeaders()
+    console.log(token,"client")
+    let header = new HttpHeaders()
     if(token){
-      headers=headers.append("x-accesss-token",token)
-      options.headers = headers;
+      header=header.append("x-access-token",token)
+      options.headers = header;
     }
+    console.log(options)
     return options
   }
 
@@ -38,8 +39,14 @@ export class DataService {
     let data = {
       reminder,
       date,
-      time
+      time,
+      
     }
-    return this.http.post('http://localhost:3000/reminder', data,this.getToken());
+    return this.http.post('http://localhost:3000/reminder',data,this.getToken())
+  }
+  
+  getReminders(){
+    const data  = {username:localStorage.getItem('currentUserName')}
+    return this.http.post('http://localhost:3000/reminders',data,this.getToken())
   }
 }

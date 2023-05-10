@@ -2,7 +2,7 @@ const db = require("./db");
 const jwt = require("jsonwebtoken");
 const register = (fullname, username, password) => {
   return db.Profile.findOne({ username: username }).then((profile) => {
-    console.log(profile);
+    console.log(profile +"from register");
     if (profile) {
       return {
         status: false,
@@ -31,7 +31,7 @@ const login = (username, password) => {
     username,
     password,
   }).then((res) => {
-    console.log(res);
+    console.log(res +"from login");
     if (res) {
       currentUser = res.fullname;
       currentUserName = username;
@@ -54,19 +54,23 @@ const login = (username, password) => {
   });
 };
 
-const addReminder = (reminder, date, time,req) => {
- return db.Profile.findOne({username:req.currentUserName}).then(res=>{
-  if(res){
-    if(req.currentUserName!=res.username){
-      return{
-        status:false,
-        message:'Given username is not authenticated',
-        statusCode:422
+const addReminder = (reminder,date,time,req)=>{
+  console.log(req.username +"from addReminder")
+  console.log(reminder+"from addReminder")
+  console.log(date+"from addReminder")
+  console.log(time+"from addReminder")
+  return db.Profile.findOne({
+    username:req.username
+  }).then((res)=>{
+    console.log(res +"from add reminder")
+    if(res){
+      let reminderObject ={
+        reminder,
+        date,
+        time
       }
-    }
-    else{
-      let reminderObj = {reminder,date,time}
-      res.reminders.push(reminderObj)
+
+      res.reminders.push(reminderObject)
       res.save()
       return{
         status:true,
@@ -74,19 +78,42 @@ const addReminder = (reminder, date, time,req) => {
         statusCode:200
       }
     }
-  }
-  else{
-    return{
-      status:false,
-      message:"Invalid data",
-      statusCode:400
+    else{
+      return{
+        status:false,
+        message:"Reminder cannot be added",
+        statusCode:400
+      }
     }
-  }
- })
-};
+  })
+}
+
+const getReminders= (username)=>{
+  return db.Profile.findOne({
+    username:username
+  }).then(res=>{
+    if(res){
+      return{
+        status:true,
+        message:"success",
+        data:res.reminders,
+        statusCode:200
+      }
+    }
+    else{
+      return{
+        status:false,
+        message:"failed",
+        data:res.reminders,
+        statusCode:422
+      }
+    }
+  })
+}
 
 module.exports = {
   register,
   login,
   addReminder,
+  getReminders
 };

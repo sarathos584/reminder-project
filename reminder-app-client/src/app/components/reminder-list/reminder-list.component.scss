@@ -1,4 +1,4 @@
-@import '../../../custom-styles/variables';
+@import "../../../custom-styles/variables";
 table {
   th,
   td {
@@ -16,16 +16,51 @@ table {
   background-clip: padding-box;
   box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
 }
-a{
+a {
   text-decoration: none;
   color: white;
   border: 1px solid $white;
   position: relative;
   top: 1.5rem;
   border-radius: 1rem;
-  padding: .4rem;
+  padding: 0.4rem;
   outline: none;
-    &:hover{
-      background: #00000073;
-    }
+  &:hover {
+    background: #00000073;
+  }
+}
+button {
+  // visibility: hidden;
+  outline: none;
+  border: none;
+  color: $white;
+  padding: 0.2rem 0.3rem;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  position: relative;
+  bottom: 0.2rem;
+  left: -1.4rem;
+  background: #00000083;
+}
+.delete-btn{
+  margin-right: .2rem;
+  &:hover{
+    background: rgb(204, 30, 30);
+  }
+}
+.edit-btn{
+  &:hover{
+    background: blue;
+  }
+}
+.reminder-data{
+  &:hover{
+    background: #0000003f;
+    
+  }
+
+  &:hover button{
+    visibility: visible;
+  }
+ 
 }
