@@ -1,47 +1,50 @@
 <section class="intro vh-100">
-    <div class="bg-image h-100" style="background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);">
-      <div class="mask pt-5">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-12 card-container text-center">
-              <div class="card mask-custom">
-                <div class="card-body">
-                  <div class="table-responsive">
-                    <table class="table table-borderless text-white mb-0">
-                      <thead>
-                        <tr>
-                          <th scope="col">REMINDER</th>
-                          <th scope="col">DATE</th>
-                          <th scope="col">TIME</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <!-- <tr class="reminder-data">
-                          <td>this is a reminder</td>
-                          <td>12-12-1111</td>
-                          <td>09:25</td>
-                          <td><button>remove</button></td>
-                        </tr> -->
-                        <tr *ngFor="let i of reminders" class="reminder-data">
-                          <td>{{i.reminder}}</td>
-                          <td>{{i.date}}</td>
-                          <td>{{i.time}}</td>
-                          <td>
-                            <button class="delete-btn"><i class="fa-solid fa-trash"></i></button>
-                            <button class="edit-btn"><i class="fa-solid fa-pen-to-square"></i></button>
-                          </td>
-                          
-                        </tr>
-                        
-                      </tbody>
-                    </table>
-                  </div>
+  <div
+    class="bg-image h-100"
+    style="
+      background-image: url(https://mdbootstrap.com/img/Photos/new-templates/glassmorphism-article/img7.jpg);
+    "
+  >
+    <div class="mask pt-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 card-container text-center">
+            <div class="card mask-custom">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-borderless text-white mb-0">
+                    <thead>
+                      <tr>
+                        <th scope="col">NO</th>
+                        <th scope="col">REMINDER</th>
+                        <th scope="col">DATE</th>
+                        <th scope="col">TIME</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let i of reminders" class="reminder-data">
+                        <td>{{ reminders.indexOf(i) + 1 }}</td>
+                        <td>{{ i.reminder }}</td>
+                        <td>{{ i.date }}</td>
+                        <td>{{ i.time }}</td>
+                        <td>
+                          <button id="{{reminders.indexOf(i)}}" class="delete-btn" (click)="deleteBtn($event)">
+                            <i class="fa-solid fa-trash"></i>
+                          </button>
+                          <button class="edit-btn" mat-raised-button (click)="openEditForm()">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
-              <a href="/dashboard">Back to dashboard</a>
             </div>
+            <a href="/dashboard">Back to dashboard</a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

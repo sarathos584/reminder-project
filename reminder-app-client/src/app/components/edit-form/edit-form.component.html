@@ -1,0 +1,35 @@
+<section>
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-50">
+        
+          <div class="form-section bg-light">
+            <form>
+              <!-- reminder note input -->
+              <div class="form-outline mb-4 mx-2">
+                <textarea name="reminder-note" id="reminder-note" placeholder="Type your remider note here!" formControlName="reminder"></textarea>
+              </div>
+  
+              <!-- remider note date input -->
+              <div class="form-outline text-center mb-3 mx-2">
+                <input type="date" name="reminder-date" id="reminder-date" formControlName="date"  />
+              </div>
+              <!-- remider note time input -->
+              <div class="form-outline text-center mb-2 mx-2">
+                <input type="time" name="reminder-time" id="reminder-time" formControlName="time" />
+              </div>
+  
+              <div class="text-center mt-1 pt-2">
+                <button type="submit" class="btn btn-md"mat-dialog-close mat-dialog-close="true">
+                  Remind Me
+                </button>
+              </div>
+            </form>
+            <div class="text-center viewBtn mt-3">
+              <button mat-button mat-dialog-close mat-dialog-close="false">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </section>
+  

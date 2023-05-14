@@ -2,7 +2,9 @@
 
 @include buttonStyle;
 @include dividerStyle;
-
+section{
+  height: 84vh;
+}
 .h-custom {
   height: calc(100% - 73px);
 }

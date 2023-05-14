@@ -8,17 +8,17 @@ app.use(
   cors({
     origin: "http://localhost:4200",
   })
-  );
-  app.use(express.json());
+);
+app.use(express.json());
 
 const appMiddleware = (req, res, next) => {
   try {
     token = req.headers["x-access-token"];
-    console.log(token)
+    console.log(token);
     res = jwt.verify(token, "jwtauthkey123");
     req.username = res.currentUserName;
-    console.log(res +"from middleware");
-    console.log(res.currentUserName +"  username from middleware");
+    console.log(res + "from middleware");
+    console.log(res.currentUserName + "  username from middleware");
     next();
   } catch {
     res.status(400).json({
@@ -36,6 +36,7 @@ app.post("/register", (req, res) => {
     req.body.username,
     req.body.password
   );
+
   result.then((resultObject) => {
     res.status(resultObject.statusCode).send(resultObject);
   });
@@ -51,27 +52,52 @@ app.post("/login", (req, res) => {
 
 // API for ADDING REMINDERS
 
-app.post('/reminder',appMiddleware,(req,res)=>{
+app.post("/reminder", appMiddleware, (req, res) => {
   const result = dataservice.addReminder(
     req.body.reminder,
     req.body.date,
     req.body.time,
     req
-  )
-  result.then((resultObject)=>{
-    res.status(resultObject.statusCode).send(resultObject)
-  })
-})
+  );
+  result.then((resultObject) => {
+    res.status(resultObject.statusCode).send(resultObject);
+  });
+});
 
 // API for REMINDER LIST
 
-app.post('/reminders',appMiddleware,(req,res)=>{
-  const result = dataservice.getReminders(req.body.username)
-  result.then((resultObject=>{
-    res.status(resultObject.statusCode).send(resultObject)
-  }))
-})
+app.post("/reminders", appMiddleware, (req, res) => {
+  const result = dataservice.getReminders(req.body.username);
+  result.then((resultObject) => {
+    res.status(resultObject.statusCode).send(resultObject);
+  });
+});
 
+// API for DELETING REMAINDERS
+
+app.post("/delete", appMiddleware, (req, res) => {
+  const result = dataservice.deleteReminder(req.body.index, req.body.username);
+  console.log(req.body.index + "index from delete-indexjs");
+  console.log(req.body.username + "username from delete-indexjs");
+  result.then((resultObject) => {
+    res.status(resultObject.statusCode).send(resultObject);
+  });
+});
+
+// API for EDITING REMINDERS
+
+app.post("/edit", appMiddleware, (req, res) => {
+  const result = dataservice.editReminder(
+    req.body.index,
+    req.body.username,
+    req.body.reminder,
+    req.body.date,
+    req.body.time
+  );
+  result.then((resultObject)=>{
+    res.status(resultObject.statusCode).send(resultObject)
+  })
+});
 
 app.listen(port, () => {
   console.log(`Reminder app listening on port ${port}`);
